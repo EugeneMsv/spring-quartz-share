@@ -1,0 +1,10 @@
+liquibase:
+  change-log: classpath:/database_changelog.xml
+  enabled: true
+
+spring:
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:30000/postgres?currentSchema=public
+    username: postgres
+    password: postgres
