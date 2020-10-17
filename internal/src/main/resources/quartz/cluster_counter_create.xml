@@ -1,0 +1,36 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet author="Eugene_Moiseev" id="cluster_counter_table_create">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="cluster_counter_table_create"/>
+            </not>
+        </preConditions>
+        <createTable tableName="cluster_counter">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="node_counter" type="BIGINT"/>
+        </createTable>
+        <addPrimaryKey tableName="cluster_counter" columnNames="id"/>
+
+    </changeSet>
+
+    <changeSet author="Eugene_Moiseev" id="cluster_counter_table_insert_internal">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <sqlCheck expectedResult="1">select count(1) from cluster_counter where id=1</sqlCheck>
+            </not>
+        </preConditions>
+        <insert tableName="cluster_counter">
+            <column name="id" value="1"/>
+            <column name="version" value="0"/>
+        </insert>
+
+    </changeSet>
+</databaseChangeLog>

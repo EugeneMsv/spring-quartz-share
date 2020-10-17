@@ -1,19 +1,13 @@
 package com.github.eug.msv;
 
-import com.github.eug.msv.external.job.ExternalJob;
 import com.github.eug.msv.job.AutowiringSpringBeanJobFactory;
 import com.github.eug.msv.job.InternalJob;
-import com.github.eug.msv.job.InternalJobFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
-import org.quartz.SimpleScheduleBuilder;
 import org.quartz.Trigger;
-import org.quartz.TriggerBuilder;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.PropertiesFactoryBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -65,7 +59,6 @@ public class InternalQuartzConfig {
         return simpleTriggerFactoryBean;
     }
 
-/*    @ConditionalOnMissingBean(SchedulerFactoryBean.class)
     @Bean
     public SchedulerFactoryBean schedulerFactoryBeanDataEvent(Trigger[] triggers, JobDetail[] jobDetails) {
         SchedulerFactoryBean schedulerFactory = new SchedulerFactoryBean();
@@ -81,13 +74,12 @@ public class InternalQuartzConfig {
         return schedulerFactory;
     }
 
-    @ConditionalOnMissingBean(SpringBeanJobFactory.class)
     @Bean
     public SpringBeanJobFactory springBeanJobFactory() {
         AutowiringSpringBeanJobFactory jobFactory = new AutowiringSpringBeanJobFactory();
         jobFactory.setApplicationContext(applicationContext);
         return jobFactory;
-    }*/
+    }
 
     @Bean
     public Properties quartzProperties() {

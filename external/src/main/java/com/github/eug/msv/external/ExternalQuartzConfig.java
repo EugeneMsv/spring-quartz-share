@@ -9,8 +9,10 @@ import org.quartz.JobDetail;
 import org.quartz.Trigger;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.PropertiesFactoryBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.scheduling.quartz.JobDetailFactoryBean;
@@ -62,6 +64,7 @@ public class ExternalQuartzConfig {
         return simpleTriggerFactoryBean;
     }
 
+    @ConditionalOnMissingBean
     @Bean
     public SchedulerFactoryBean externalSchedulerFactoryBeanDataEvent(Trigger[] triggers, JobDetail[] jobDetails) {
         SchedulerFactoryBean schedulerFactory = new SchedulerFactoryBean();
@@ -77,6 +80,7 @@ public class ExternalQuartzConfig {
         return schedulerFactory;
     }
 
+    @ConditionalOnMissingBean
     @Bean
     public SpringBeanJobFactory externalSpringBeanJobFactory() {
         AutowiringSpringBeanJobFactory jobFactory = new AutowiringSpringBeanJobFactory();
@@ -84,6 +88,7 @@ public class ExternalQuartzConfig {
         return jobFactory;
     }
 
+    @ConditionalOnMissingBean
     @Bean
     public Properties externalQuartzProperties() {
         log.warn("externalQuartzProperties");
