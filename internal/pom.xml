@@ -32,7 +32,6 @@
             <artifactId>postgresql</artifactId>
             <version>${postgresql.version}</version>
         </dependency>
-
         <dependency>
             <groupId>com.github.eug.msv</groupId>
             <artifactId>external</artifactId>

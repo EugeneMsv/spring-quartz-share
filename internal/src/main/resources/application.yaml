@@ -8,3 +8,8 @@ spring:
     url: jdbc:postgresql://localhost:30000/postgres?currentSchema=public
     username: postgres
     password: postgres
+
+service:
+  job:
+    internal:
+      time: 2000
